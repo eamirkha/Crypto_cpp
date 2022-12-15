@@ -1,20 +1,20 @@
 #pragma once
 
 #include "Crypto.h"
+#include <string>
+using namespace std;
 
 
-class Shablon : public Crypto {
+class TogherSyuner : public Crypto {
 public:
 	virtual	int Encode(const char* pSrc, unsigned int SrcSize, char* pRez, unsigned int Rezsize);
 	virtual	int Decode(const char* pSrc, unsigned int SrcSize, char* pRez, unsigned int Rezsize);
+	string encode();
 
 public:
-	Shablon();
-	const char* get_eTableptr();
-	const char* get_deTableptr();
-	void setTable(const char* enc_str, const char* decode_str);
+	TogherSyuner(string, int);
 
 private:
-	char estr[255];
-	char destr[255];
+	string str;
+	int n;
 };

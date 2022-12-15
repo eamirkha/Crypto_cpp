@@ -14,9 +14,9 @@ const char* Shablon::get_deTableptr()
 {
 	return destr;
 }
- Shablon::Shablon()
+Shablon::Shablon()
 {
-	
+
 }
 
 int Shablon::Encode(const char* pSrc, unsigned int SrcSize, char* pRez, unsigned int Rezsize)
@@ -38,4 +38,3 @@ int Shablon::Decode(const char* pSrc, unsigned int SrcSize, char* pRez, unsigned
 
 
 
- 

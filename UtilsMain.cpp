@@ -1,4 +1,4 @@
-#include "CaesarGen.h"
+#include "Caesar.h"
 #include <string>
 #include <vector>
 #include "iostream"
@@ -6,21 +6,25 @@ using namespace std;
 
 #include <string.h>
 #include "Shablon.h"
+#include "RLE.h"
+#include "TogherSyuner.h"
 //#include "UtilsMain.h"
 
 vector<string> MenuItems = {
 	"  Caesar." ,
 	"  Shablon." ,
+	"  RLE.",
+	"  TogherSyuner.",
 	"  Unexistant Method."
 };
 
 int Display(vector<string>& Items)
 {
-	size_t i= Items.size();
+	size_t i = Items.size();
 	cout << "\nSupported Methods...\n";
 	for (i = 0; i < Items.size(); ++i)
 	{
-		cout << "\n" << (i+1) << "." << Items[i] ;
+		cout << "\n" << (i + 1) << "." << Items[i];
 	}
 	cout << "\nEnter Method number (1 to N, 0 for exit...)\n";
 	cin >> i;
@@ -56,8 +60,8 @@ int main(int argc, char* argv[])
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		getline(cin, str);
 
-		//cout << "The initial string is : ";
-		//cout << str << endl;
+		cout << "The initial string is : ";
+		cout << str << endl;
 
 		size_t sz = str.size() + 10;
 		size_t szn = sz;
@@ -88,8 +92,8 @@ int main(int argc, char* argv[])
 	{
 		Shablon sb;
 		string str;
-		const char* e_str="holwaserfgh";
-		const char* de_str="asrtyhopkz";
+		const char* e_str = "holwaserfgh";
+		const char* de_str = "asrtyhopkz";
 		sb.setTable(e_str, de_str);
 		cout << "\nEnter text to Encrypt...\n";
 		//cin >> str;
@@ -99,8 +103,8 @@ int main(int argc, char* argv[])
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		getline(cin, str);
 
-		//cout << "The initial string is : ";
-		//cout << str << endl;
+		cout << "The initial string is : ";
+		cout << str << endl;
 		const char* enc_str = sb.get_eTableptr();
 		const char* dec_str = sb.get_deTableptr();
 		string estr = enc_str;
@@ -119,6 +123,51 @@ int main(int argc, char* argv[])
 		}
 
 	}
+	else if (ItemNum == 2)
+	{
+		RLE rle;
+		string str;
+		cout << "\nEnter text to Encrypt...\n";
+		//cin >> str;
+		//cin.clear();
+		//fflush(stdin);
 
-	return 0;
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		getline(cin, str);
+
+		cout << "The initial string is : ";
+		cout << str << endl;
+		int  i = 0, count;
+		while (i < str.length())
+		{
+			count = 0;
+			cout << str[i];
+			while (str[i] == str[i + count])
+			{
+				count++;
+			}
+			i += count;
+			cout << count;
+		}
+		cout << endl;
+	}
+	else if (ItemNum == 3)
+	{
+		string str;
+		cout << "\nEnter text to Encrypt...\n";
+		//cin >> str;
+		//cin.clear();
+		//fflush(stdin);
+
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		getline(cin, str);
+		int n = 3;
+		TogherSyuner ob(str, n);
+
+		cout << "The initial string is : ";
+		cout << str << endl;
+
+		cout << ob.encode() << endl;
+
+	}
 }

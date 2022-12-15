@@ -2,19 +2,17 @@
 
 #include "Crypto.h"
 
+const unsigned int Step = 3;
 
-class Shablon : public Crypto {
+class Caesar : public Crypto {
 public:
 	virtual	int Encode(const char* pSrc, unsigned int SrcSize, char* pRez, unsigned int Rezsize);
 	virtual	int Decode(const char* pSrc, unsigned int SrcSize, char* pRez, unsigned int Rezsize);
 
 public:
-	Shablon();
-	const char* get_eTableptr();
-	const char* get_deTableptr();
-	void setTable(const char* enc_str, const char* decode_str);
-
+	Caesar(unsigned int num = Step);
+	void SetStep(unsigned int num = Step);
+	unsigned int GetStep();
 private:
-	char estr[255];
-	char destr[255];
+	unsigned int step;
 };
